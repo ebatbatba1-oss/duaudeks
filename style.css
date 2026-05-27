@@ -31,7 +31,7 @@ body {
     background-color: #fff; /* 캡처 시 배경 누락 방지 */
 }
 
-/* 1. 검은 상자 영역 (절대 위치 지정) */
+/* 1. 검은 상자 영역 (캡처 시 정렬 유지를 위해 Flexbox 적용) */
 .black-box {
     position: absolute;
     top: 17.5%;
@@ -39,11 +39,14 @@ body {
     width: 60%;
     height: 7.8%;
     background-color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .black-box input {
     width: 100%;
-    height: 100%;
     background: transparent;
     border: none;
     color: #ffffff;
@@ -52,13 +55,14 @@ body {
     font-weight: bold;
     outline: none;
     padding: 0;
+    margin: 0;
 }
 
 .black-box input::placeholder {
     color: #888;
 }
 
-/* 2. 회색 이미지 영역 (1:1 비율 및 흑백 필터, 절대 위치 지정) */
+/* 2. 회색 이미지 영역 (1:1 비율 정방형) */
 .image-upload-box {
     position: absolute;
     top: 28.5%;
@@ -70,11 +74,9 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-size: cover;
-    background-position: center;
-    filter: grayscale(100%); /* 이미지를 강제로 흑백(모노크롬)으로 바꿉니다 */
     border: 1px solid #333;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .image-upload-box input[type="file"] {
@@ -88,6 +90,19 @@ body {
     text-align: center;
     pointer-events: none;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+/* 업로드된 이미지 스타일 (회색 상자를 여백 없이 완전히 채우도록 절대 좌표 지정) */
+#image-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비율을 유지하면서 꽉 차게 채움 */
+    display: none; /* 초기에는 숨김 */
+    z-index: 2;
 }
 
 /* 3. 밑 흰부분 영역 (한마디, 절대 위치 지정) */
