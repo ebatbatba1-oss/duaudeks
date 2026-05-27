@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여명단 프로필</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
-    <div class="newspaper-container">
-        <div class="overlay-box">
+    <div class="app-wrapper">
+        <div class="newspaper-container" id="capture-area">
             <div class="black-box">
                 <input type="text" id="name-age" placeholder="이름(나이)">
             </div>
@@ -22,6 +23,8 @@
                 <textarea id="short-message" placeholder="한마디"></textarea>
             </div>
         </div>
+        
+        <button id="download-btn">이미지 다운로드</button>
     </div>
     <script src="script.js"></script>
 </body>
